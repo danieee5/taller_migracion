@@ -1,0 +1,79 @@
+body {
+  background-color: #EF88AD; /* rosa claro */
+  color: #3A0519;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+  color: #3A0519;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.table thead {
+  background-color: #A53860;
+  color: white;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #F9D5E5;
+}
+
+.table tbody tr:hover {
+  background-color: #F7B5D4;
+}
+
+.img-thumbnail {
+  border: 3px solid #670D2F;
+}
+
+.proyecto-header {
+  background-color: #3A0519;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Encabezado de tabla */
+.table thead th {
+  background-color: #A53860;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem;
+  border-bottom: 2px solid #670D2F;
+}
+
+/* Celdas */
+.table td {
+  padding: 0.9rem;
+  vertical-align: middle;
+}
+
+/* Filas pares */
+.table tbody tr:nth-child(even) {
+  background-color: #F9D5E5;
+}
+
+/* Hover */
+.table tbody tr:hover {
+  background-color: #F7B5D4;
+  transition: background-color 0.3s ease;
+}
+
+/* Imagen */
+.img-thumbnail {
+  border: 3px solid #670D2F;
+  border-radius: 10px;
+}
+
+/* Bordes de tabla más redondeados */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #670D2F;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
