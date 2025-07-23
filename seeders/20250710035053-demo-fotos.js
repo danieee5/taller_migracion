@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const now = new Date();
 
-    await queryInterface.bulkInsert('Fotos', [
+    await queryInterface.bulkInsert('fotos', [
       {
         titulo: 'Ejemplo 1',
         descripcion: 'Una imagen de ejemplo',
@@ -49,6 +49,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Fotos', null, {});
+    await queryInterface.bulkDelete('fotos', null, {});
   }
 };

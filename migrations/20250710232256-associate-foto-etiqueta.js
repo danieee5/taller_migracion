@@ -7,7 +7,7 @@ module.exports = {
       type: 'foreign key',
       name: 'fk_fotoetiqueta_foto', // nombre personalizado
       references: {
-        table: 'Fotos',
+        table: 'fotos',
         field: 'id',
       },
       onDelete: 'CASCADE',
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeConstraint('fotoetiquetas', 'fk_fotoetiqueta_foto');
-    await queryInterface.removeConstraint('fotoetiquetas', 'fk_fotoetiqueta_etiqueta');
+    await queryInterface.removeConstraint('fotoetiqueta', 'fk_fotoetiqueta_foto');
+    await queryInterface.removeConstraint('fotoetiqueta', 'fk_fotoetiqueta_etiqueta');
   }
 };

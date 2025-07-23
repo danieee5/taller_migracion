@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     // 1. Obtener todos los IDs de fotos y etiquetas
-    const [fotos] = await queryInterface.sequelize.query(`SELECT id FROM Fotos`);
+    const [fotos] = await queryInterface.sequelize.query(`SELECT id FROM fotos`);
     const [etiquetas] = await queryInterface.sequelize.query(`SELECT id FROM etiqueta`);
 
     const combinaciones = [];

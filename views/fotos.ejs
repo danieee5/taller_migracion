@@ -8,6 +8,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/public/stylesheets/style.css" rel="stylesheet">
+  
 </head>
 <body>
 
@@ -28,26 +29,57 @@
         <th>Descripción</th>
         <th>Calificación</th>
         <th>Imagen</th>
+        <th>Etiquetas</th>
       </tr>
     </thead>
     <tbody>
-      <% arrFotos.forEach(foto => { %>
-        <tr>
-          <td><%= foto.id %></td>
-          <td><%= foto.titulo %></td>
-          <td><%= foto.descripcion %></td>
-          <td><%= foto.calificacion %></td>
-          <td>
-            <% if (foto.ruta) { %>
-              <img src="/public/<%= foto.ruta %>" alt="Foto" class="img-thumbnail" style="max-width: 100px;">
-              <br><small>Ruta: <%= foto.ruta %></small>
-            <% } else { %>
-              <span class="text-muted">Sin imagen</span>
-            <% } %>
-          </td>
-        </tr>
-      <% }) %>
-    </tbody>
+  <% arrFotos.forEach(foto => { %>
+    <tr>
+      <td><%= foto.id %></td>
+      <td><%= foto.titulo %></td>
+      <td><%= foto.descripcion %></td>
+      <td><%= foto.calificacion %></td>
+
+      <!-- Columna de Imagen -->
+<td>
+  <% if (foto.ruta) { 
+    const rutaImagen = foto.ruta.startsWith('public/') ? '/' + foto.ruta : '/public/' + foto.ruta;
+  %>
+    <img src="<%= rutaImagen %>" alt="Foto" class="img-thumbnail" style="max-width: 100px;">
+    <br><small>Ruta: <%= foto.ruta %></small>
+  <% } else { %>
+    <span class="text-muted">Sin imagen</span>
+  <% } %>
+</td>
+
+      <!-- Columna de Etiquetas -->
+<!-- Columna de Etiquetas -->
+<td>
+  <% if (foto.etiquetas && foto.etiquetas.length > 0) { %>
+    <% foto.etiquetas.forEach(etiqueta => { %>
+      <span class="badge bg-primary me-1"><%= etiqueta.texto %></span>
+    <% }) %>
+  <% } else { %>
+    <span class="text-muted">Sin etiquetas (ID: <%= foto.id %>)</span>
+  <% } %>
+</td>
+
+<!-- En tu tabla, modifica o agrega una columna -->
+<td>
+  <a href="/fotos/findById/view/<%= foto.id %>" 
+     class="btn btn-sm btn-primary">
+    <i class="bi bi-eye"></i> Ver Detalles
+  </a>
+  <a href="/fotos/findById/json/<%= foto.id %>" 
+     class="btn btn-sm btn-secondary ms-1"
+     target="_blank">
+    <i class="bi bi-code-slash"></i> JSON
+  </a>
+</td>
+
+    </tr>
+  <% }) %>
+</tbody>
   </table>
 </div>
 

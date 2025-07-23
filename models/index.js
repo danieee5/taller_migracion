@@ -16,6 +16,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+// Cargar todos los modelos del directorio actual
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -28,12 +29,13 @@ fs
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
+    db[model.name] = model; // guarda el modelo con el nombre que definiste en modelName
   });
 
+// Asociar modelos entre sí
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
-    db[modelName].associate(db);
+    db[modelName].associate(db); // pasa el objeto completo de modelos
   }
 });
 
@@ -41,3 +43,10 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+// Después de cargar los modelos
+console.log('\n🔍 Modelos cargados:');
+Object.keys(db).forEach(modelName => {
+  console.log(`- ${modelName}`);
+  console.log('  Associations:', Object.keys(db[modelName].associations || {}));
+});
